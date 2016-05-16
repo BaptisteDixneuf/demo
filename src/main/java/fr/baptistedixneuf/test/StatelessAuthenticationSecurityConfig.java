@@ -12,6 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @EnableWebSecurity
 @Configuration
@@ -36,6 +39,7 @@ public class StatelessAuthenticationSecurityConfig extends WebSecurityConfigurer
 				.servletApi().and()
 				.headers().cacheControl().and()
 				.authorizeRequests()
+				
 								
 				//allow anonymous resource requests
 				.antMatchers("/").permitAll()
@@ -76,4 +80,6 @@ public class StatelessAuthenticationSecurityConfig extends WebSecurityConfigurer
 	protected UserDetailsService userDetailsService() {
 		return userDetailsService;
 	}
+	
+
 }

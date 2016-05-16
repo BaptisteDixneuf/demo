@@ -1,19 +1,28 @@
 import {Component} from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
 
-import {LoginComponent} from './login.component';
-import {PrivateComponent} from './private.component';
+import {LoginComponent} from './login/login.component';
+import {LogoutComponent} from './login/logout.component';
+import {UserComponent} from './user/user.component';
 
 
 @Component({
     selector: 'my-app',
-    directives: [LoginComponent, ROUTER_DIRECTIVES]
+    directives: [LoginComponent, ROUTER_DIRECTIVES],
     template: `
-            <router-outlet></router-outlet>
+            <h1>Bienvenue</h1>
+             <nav>
+      <a [routerLink]="['/home']">Mon compte</a>
+      <a [routerLink]="['/login']">Se connecter</a>
+      <a [routerLink]="['/logout']">Déconnexion</a>
+    </nav>
+    <router-outlet></router-outlet>
         `
 })
-@RouteConfig([
-    { path: '/home', name: 'Home', component: PrivateComponent, useAsDefault:true },
-    { path: '/login', name: 'Login', component: LoginComponent }
+@Routes([
+    { path: '/user', component: UserComponent},
+    { path: '/login', component: LoginComponent },
+    { path: '/logout', component: LogoutComponent },
+    { path: '*', component: UserComponent},
 ])
 export class AppComponent {}

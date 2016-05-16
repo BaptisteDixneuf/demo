@@ -1,63 +1,45 @@
 (function(global) {
 
-  var ngVer = '@2.0.0-rc.1'; // lock in the angular package version; do not let it float to current!
+  // map tells the System loader where to look for things
+  var map = {
+    'app':                        'app', // 'dist',
+    'rxjs':                       'node_modules/rxjs',
+    'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
+    '@angular':                   'node_modules/@angular'
+  };
 
-  //map tells the System loader where to look for things
-  var  map = {
-    'app':                        'app',
-
-    '@angular':                   'https://npmcdn.com/@angular', // sufficient if we didn't pin the version
-    'angular2-in-memory-web-api': 'https://npmcdn.com/angular2-in-memory-web-api', // get latest
-    'rxjs':                       'https://npmcdn.com/rxjs@5.0.0-beta.6',
-    'ts':                         'https://npmcdn.com/plugin-typescript@4.0.10/lib/plugin.js',
-    'typescript':                 'https://npmcdn.com/typescript@1.8.10/lib/typescript.js',
- };
-
-  //packages tells the System loader how to load when no filename and/or no extension
+  // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
-    'app':                        { main: 'main.ts',  defaultExtension: 'ts' },
+    'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { defaultExtension: 'js' },
   };
 
-  var ngPackageNames = [
-    'common',
-    'compiler',
-    'core',
-    'http',
-    'platform-browser',
-    'platform-browser-dynamic',
-    'router',
-    'router-deprecated',
-    'upgrade',
+  var packageNames = [
+    '@angular/common',
+    '@angular/compiler',
+    '@angular/core',
+    '@angular/http',
+    '@angular/platform-browser',
+    '@angular/platform-browser-dynamic',
+    '@angular/router',
+    '@angular/router-deprecated',
+    '@angular/testing',
+    '@angular/upgrade',
   ];
 
-  // Add map entries for each angular package
-  // only because we're pinning the version with `ngVer`.
-  ngPackageNames.forEach(function(pkgName) {
-    map['@angular/'+pkgName] = 'https://npmcdn.com/@angular/' + pkgName + ngVer;
-  });
-
-  // Add package entries for angular packages
-  ngPackageNames.forEach(function(pkgName) {
-
-    // Bundled (~40 requests):
-    packages['@angular/'+pkgName] = { main: pkgName + '.umd.js', defaultExtension: 'js' };
-
-    // Individual files (~300 requests):
-    //packages['@angular/'+pkgName] = { main: 'index.js', defaultExtension: 'js' };
+  // add package entries for angular packages in the form '@angular/common': { main: 'index.js', defaultExtension: 'js' }
+  packageNames.forEach(function(pkgName) {
+    packages[pkgName] = { main: 'index.js', defaultExtension: 'js' };
   });
 
   var config = {
-    // DEMO ONLY! REAL CODE SHOULD NOT TRANSPILE IN THE BROWSER
-    transpiler: 'typescript',
-    typescriptOptions: {
-      emitDecoratorMetadata: true
-    },
-
     map: map,
     packages: packages
   }
+
+  // filterSystemConfig - index.html's chance to modify config before we register it.
+  if (global.filterSystemConfig) { global.filterSystemConfig(config); }
 
   System.config(config);
 
