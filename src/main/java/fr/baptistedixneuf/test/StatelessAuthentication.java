@@ -14,7 +14,6 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 
 import fr.baptistedixneuf.test.models.User;
 import fr.baptistedixneuf.test.models.UserRepository;
-import fr.baptistedixneuf.test.models.UserRole;
 
 @EnableAutoConfiguration
 @Configuration

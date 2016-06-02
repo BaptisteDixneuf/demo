@@ -1,4 +1,4 @@
-package fr.baptistedixneuf.test.models;
+package fr.baptistedixneuf.test;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import fr.baptistedixneuf.test.models.User;
 
 @Entity
 @IdClass(UserAuthority.class)

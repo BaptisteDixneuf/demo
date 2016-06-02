@@ -1,4 +1,6 @@
-package fr.baptistedixneuf.test.models;
+package fr.baptistedixneuf.test;
+
+import fr.baptistedixneuf.test.models.User;
 
 public enum UserRole {
 	USER, ADMIN;

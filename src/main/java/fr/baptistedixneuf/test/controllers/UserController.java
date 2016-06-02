@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.baptistedixneuf.test.UserAuthentication;
+import fr.baptistedixneuf.test.UserRole;
 import fr.baptistedixneuf.test.models.User;
 import fr.baptistedixneuf.test.models.UserRepository;
-import fr.baptistedixneuf.test.models.UserRole;
 
 @RestController
 public class UserController {

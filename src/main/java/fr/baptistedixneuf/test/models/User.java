@@ -14,6 +14,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import fr.baptistedixneuf.test.UserAuthority;
+import fr.baptistedixneuf.test.UserRole;
+
 @Entity
 @Table(name = "User", uniqueConstraints = @UniqueConstraint(columnNames = { "username" }))
 public class User implements UserDetails {
