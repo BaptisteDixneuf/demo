@@ -38,7 +38,7 @@ export class AuthenticationService {
     this.http.post(AuthenticationService.URL_LOGIN, creds)
       .subscribe(
         data => {
-          this.saveJwt(data);
+          this.saveJwt(data.text());
           this._router.navigate(["/user"]); 
           return true;
         },
@@ -50,9 +50,9 @@ export class AuthenticationService {
     return false;
   }
 
-   checkCredentials( ){
-    if (localStorage.getItem(AuthenticationService.NAME_JWT) === null){
-        this._router.navigate(['/login']);
-    }
+    checkCredentials(){
+		if (localStorage.getItem(AuthenticationService.NAME_JWT) === null){
+			this._router.navigate(['/login']);
+		}
   } 
 }

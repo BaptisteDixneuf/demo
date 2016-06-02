@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 
 class MyRequestOptions extends BaseRequestOptions {
   constructor () {
-    super();
-    this.headers.append('X-AUTH-TOKEN','eyJpZCI6NCwidXNlcm5hbWUiOiJhZG1pbiIsImV4cGlyZXMiOjE0NjU3NTkzODUyMTIsInJvbGVzIjpbIkFETUlOIl19.yEXAfH9k1Nd1f0B7nKkChiaWZxhB3E17ar7a1yirrIw=');
+    super();  
+    this.headers.append('X-AUTH-TOKEN', localStorage.getItem('jwt'));    
     this.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
   }
 } 
